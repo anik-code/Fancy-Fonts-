@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font & Kaomoji Studio — 72+ Fancy Fonts & 60+ Kaomojis</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans, JetBrains Mono & Caveat (handwritten style for support pills) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        hand: ['Caveat', 'cursive'],
+                    },
+                    colors: {
+                        obsidian: {
+                            950: '#0b0a10',
+                            900: '#14121d',
+                            850: '#1b1826',
+                            800: '#242033',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Sleek Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(139, 92, 246, 0.35);
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(139, 92, 246, 0.65);
+        }
+
+        /* Hide horizontal scrollbar on category pills */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Ambient gradient mesh */
+        .bg-studio-mesh {
+            background-image: 
+                radial-gradient(at 10% 10%, rgba(139, 92, 246, 0.12) 0px, transparent 45%),
+                radial-gradient(at 90% 15%, rgba(99, 102, 241, 0.10) 0px, transparent 45%);
+        }
+        .dark .bg-studio-mesh {
+            background-image: 
+                radial-gradient(at 12% 8%, rgba(139, 92, 246, 0.20) 0px, transparent 50%),
+                radial-gradient(at 88% 12%, rgba(225, 29, 72, 0.10) 0px, transparent 45%);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-obsidian-950 dark:text-slate-100 min-h-screen transition-colors duration-300 bg-studio-mesh selection:bg-violet-600 selection:text-white">
+
+    <!-- Top Header -->
+    <header class="border-b border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-obsidian-950/80 backdrop-blur-md">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3">
+            <!-- Studio Logo & Brand -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-violet-600 via-indigo-600 to-fuchsia-600 flex items-center justify-center text-white shadow-lg shadow-violet-600/25">
+                    <i data-lucide="sparkles" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-lg sm:text-xl tracking-tight bg-gradient-to-r from-violet-600 via-indigo-600 to-fuchsia-600 dark:from-violet-400 dark:via-indigo-400 dark:to-fuchsia-400 bg-clip-text text-transparent">
+                        Font & Kaomoji Studio
+                    </h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">
+                        72+ Stylish Unicode Fonts & 60+ Japanese Kaomojis
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Controls: Favorites Filter & Theme Switch -->
+            <div class="flex items-center gap-2 sm:gap-2.5">
+                <button 
+                    id="favToggleBtn" 
+                    onclick="toggleFavoritesFilter()" 
+                    class="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold border border-slate-200 dark:border-slate-800 bg-white dark:bg-obsidian-900 hover:border-rose-500/60 transition-all"
+                    title="View Pinned Favorites"
+                >
+                    <i data-lucide="heart" class="w-4 h-4 text-rose-500"></i>
+                    <span class="hidden xs:inline">Favorites</span>
+                    <span id="favBadge" class="px-1.5 py-0.5 text-[11px] font-bold rounded-full bg-rose-500/15 text-rose-500">0</span>
+                </button>
+
+                <button 
+                    onclick="toggleTheme()" 
+                    class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-obsidian-900 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-obsidian-850 transition-all"
+                    aria-label="Toggle Dark or Light Mode"
+                >
+                    <i data-lucide="sun" class="w-4 h-4 hidden dark:block text-amber-400"></i>
+                    <i data-lucide="moon" class="w-4 h-4 block dark:hidden text-indigo-600"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sticky Control Bar: Main Section Switcher, Live Text Input & Category Pills -->
+    <div class="sticky top-0 z-30 bg-slate-50/95 dark:bg-obsidian-950/95 backdrop-blur-xl border-b border-slate-200/80 dark:border-slate-800/80 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-3 pb-3 space-y-3">
+            
+            <!-- Main Section Tabs -->
+            <div class="flex flex-wrap items-center justify-between gap-2">
+                <div class="inline-flex p-1 rounded-2xl bg-slate-200/80 dark:bg-obsidian-900 border border-slate-200 dark:border-slate-800">
+                    <button 
+                        id="mainTabFonts" 
+                        onclick="switchSection('fonts')" 
+                        class="flex items-center gap-2 px-4 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-violet-600 text-white shadow-sm transition-all"
+                    >
+                        <i data-lucide="wand-2" class="w-3.5 h-3.5"></i>
+                        <span>Fancy Fonts (72+)</span>
+                    </button>
+                    <button 
+                        id="mainTabKaomojis" 
+                        onclick="switchSection('kaomojis')" 
+                        class="flex items-center gap-2 px-4 py-1.5 rounded-xl text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all"
+                    >
+                        <i data-lucide="smile-plus" class="w-3.5 h-3.5"></i>
+                        <span>Kaomojis (60+)</span>
+                    </button>
+                </div>
+
+                <span id="liveModeStatus" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-medium text-violet-600 dark:text-violet-400 bg-violet-500/10 px-3 py-1 rounded-full">
+                    <span class="w-1.5 h-1.5 rounded-full bg-violet-500 animate-pulse"></span>
+                    Real-Time Unicode Engine
+                </span>
+            </div>
+
+            <!-- Sticky Live Input Box (Visible on Fancy Fonts Tab) -->
+            <div id="fontInputContainer" class="relative group">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-violet-600 via-indigo-600 to-fuchsia-600 rounded-2xl opacity-25 group-focus-within:opacity-70 blur transition duration-300"></div>
+                <div class="relative flex items-center bg-white dark:bg-obsidian-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                    <div class="pl-3.5 sm:pl-4 text-violet-500">
+                        <i data-lucide="type" class="w-5 h-5"></i>
+                    </div>
+                    <input 
+                        type="text" 
+                        id="textInput" 
+                        value="Death" 
+                        placeholder="Type your name or bio here..." 
+                        autocomplete="off"
+                        class="w-full py-3 sm:py-3.5 px-3 bg-transparent text-base sm:text-lg font-semibold text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none"
+                    >
+                    <div class="flex items-center gap-1.5 sm:gap-2 pr-2.5 sm:pr-3 shrink-0">
+                        <span id="charCount" class="hidden xs:inline-block font-mono text-xs text-slate-500 dark:text-slate-400 px-2 py-1 rounded-lg bg-slate-100 dark:bg-obsidian-850">
+                            5 chars
+                        </span>
+                        <button 
+                            onclick="cycleRandomName()" 
+                            class="flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-semibold bg-indigo-500/10 text-indigo-600 dark:text-indigo-300 hover:bg-indigo-600 hover:text-white transition-all"
+                            title="Cycle Cool Gaming Names"
+                        >
+                            <i data-lucide="shuffle" class="w-3.5 h-3.5"></i>
+                            <span class="hidden sm:inline">Random Name</span>
+                        </button>
+                        <button 
+                            onclick="clearTextInput()" 
+                            class="p-2 rounded-xl text-slate-400 hover:text-rose-500 hover:bg-rose-500/10 transition-colors"
+                            title="Clear Text"
+                        >
+                            <i data-lucide="x" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category Filter Pills -->
+            <div id="categoryBar" class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-0.5">
+                <!-- Category buttons dynamically populated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+        <!-- Counter & Hint Bar -->
+        <div class="flex items-center justify-between mb-4 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+            <p id="itemsCounterText">Showing 72 fancy font styles</p>
+            <p class="hidden sm:block">Tap any card to copy instantly</p>
+        </div>
+
+        <!-- Fancy Fonts Grid -->
+        <div id="fontsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4">
+            <!-- Font cards injected via JS -->
+        </div>
+
+        <!-- Kaomojis Grid -->
+        <div id="kaomojisGrid" class="hidden grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
+            <!-- Kaomoji cards injected via JS -->
+        </div>
+
+        <!-- Empty Favorites State -->
+        <div id="emptyFavoritesState" class="hidden text-center py-16 px-4">
+            <div class="w-14 h-14 mx-auto mb-4 rounded-2xl bg-slate-200/70 dark:bg-obsidian-900 flex items-center justify-center text-rose-500">
+                <i data-lucide="heart-off" class="w-7 h-7"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-1">No favorites pinned yet</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto mb-4">
+                Click the heart icon on any font style or kaomoji card to pin it at the top of your list!
+            </p>
+            <button onclick="toggleFavoritesFilter()" class="px-4 py-2 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold transition">
+                Show All Styles
+            </button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200/80 dark:border-slate-800/80 mt-12 py-6 pb-28 text-center text-xs text-slate-500 dark:text-slate-400 space-y-1">
+        <p>Compatible with Instagram, WhatsApp, Free Fire, BGMI, Discord, X & TikTok.</p>
+        <p class="text-[11px] text-slate-400 dark:text-slate-500">Need custom help? Tap the red support icon in the bottom-right corner to message directly on WhatsApp.</p>
+    </footer>
+
+    <!-- Floating Support Speed-Dial Menu (Matches Reference Screenshot Exactly) -->
+    <div id="supportSpeedDial" class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3.5">
+        
+        <!-- Stacked Pill Buttons (Revealed when opened) -->
+        <div id="speedDialItems" class="flex flex-col items-end gap-3 opacity-0 translate-y-4 scale-95 pointer-events-none transition-all duration-300 ease-out origin-bottom-right">
+            
+            <!-- Top Pill: Telegram Blue (#0088cc) with Thick Red Border (#e11d48) -->
+            <a 
+                href="https://t.me/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="flex items-center gap-3.5 px-6 py-2.5 rounded-full bg-[#0088cc] hover:bg-[#0077b5] text-white shadow-2xl shadow-black/40 border-[3px] border-[#e11d48] hover:scale-105 active:scale-95 transition-transform cursor-pointer"
+            >
+                <!-- White Paper-Plane Telegram Icon -->
+                <svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21.9 3.6c-.3-.3-.8-.4-1.3-.2L2.4 10.7c-.5.2-.8.7-.8 1.2s.4 1 .9 1.1l4.7 1.4 1.8 5.5c.1.4.5.7.9.8h.3c.4 0 .7-.2.9-.5l2.6-3.3 4.8 3.6c.3.2.6.3.9.3.2 0 .4 0 .6-.1.4-.2.7-.6.8-1l3.1-14.9c.1-.5-.1-1-.4-1.2zM9.8 14.3l8.4-7.4-6.7 8.4-.3 3.2-1.4-4.2z"/>
+                </svg>
+                <span style="font-family: 'Caveat', cursive; font-size: 1.55rem; font-weight: 700;" class="leading-none tracking-wide pr-1">Telegram</span>
+            </a>
+
+            <!-- Bottom Pill: WhatsApp Green (#25D366) with Thick Red Border (#e11d48) & Direct Link -->
+            <a 
+                href="https://wa.me/message/EJTH6T5ADVAZO1" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="flex items-center gap-3.5 px-6 py-2.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-2xl shadow-black/40 border-[3px] border-[#e11d48] hover:scale-105 active:scale-95 transition-transform cursor-pointer"
+            >
+                <!-- White Speech-Bubble with Lines Icon matching user's screenshot -->
+                <svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM7 9h10c.55 0 1 .45 1 1s-.45 1-1 1H7c-.55 0-1-.45-1-1s.45-1 1-1zm6 5H7c-.55 0-1-.45-1-1s.45-1 1-1h6c.55 0 1 .45 1 1s-.45 1-1 1zm4-8H7c-.55 0-1-.45-1-1s.45-1 1-1h10c.55 0 1 .45 1 1s-.45 1-1 1z"/>
+                </svg>
+                <span style="font-family: 'Caveat', cursive; font-size: 1.55rem; font-weight: 700;" class="leading-none tracking-wide pr-1">WhatsApp</span>
+            </a>
+        </div>
+
+        <!-- Circular Toggle Button (#14121d with Red Border #e11d48) -->
+        <button 
+            id="speedDialToggleBtn"
+            onclick="toggleSpeedDial()"
+            aria-label="Open Support Menu"
+            class="w-15 h-15 w-[60px] h-[60px] rounded-full bg-[#14121d] hover:bg-[#1b1826] flex items-center justify-center shadow-2xl shadow-black/60 border-[3px] border-[#e11d48] hover:scale-105 active:scale-95 transition-all duration-200"
+        >
+            <!-- Closed State: Support Headset Icon -->
+            <span id="dialClosedIcon" class="flex items-center justify-center text-white">
+                <i data-lucide="headset" class="w-6 h-6 text-[#e11d48]"></i>
+            </span>
+
+            <!-- Open State: Bold Red '✕' Icon matching screenshot -->
+            <span id="dialOpenIcon" class="hidden text-[#e11d48]">
+                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </span>
+        </button>
+    </div>
+
+    <!-- Sleek Toast Notification -->
+    <div id="copyToast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 translate-y-4 transition-all duration-300 max-w-[90vw]">
+        <div class="flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-obsidian-900 dark:bg-white text-white dark:text-obsidian-950 shadow-2xl border border-slate-700/60 dark:border-slate-200 text-sm font-semibold">
+            <span class="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0">
+                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+            </span>
+            <span id="copyToastText" class="truncate">Copied to clipboard!</span>
+        </div>
+    </div>
+
+    <!-- JavaScript Engine: Unicode Maps, 72+ Fonts, 60+ Kaomojis & Interactions -->
+    <script>
+        /**
+         * 1. UNICODE CHARACTER MAPPING TABLES
+         */
+        const UPPER_STD = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const LOWER_STD = "abcdefghijklmnopqrstuvwxyz";
+        const DIGIT_STD = "0123456789";
+
+        const splitChars = (str) => Array.from(str);
+
+        const UNICODE_MAPS = {
+            boldSerif: {
+                u: splitChars("𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙"),
+                l: splitChars("𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳"),
+                d: splitChars("𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗")
+            },
+            italicSerif: {
+                u: splitChars("𝐴𝐵𝐶𝐷𝐸𝐹𝐺𝐻𝐼𝐽𝐾𝐿𝑀𝑁𝑂𝑃𝑄𝑅𝑆𝑇𝑈𝑉𝑊𝑋𝑌𝑍"),
+                l: splitChars("𝑎𝑏𝑐𝑑𝑒𝑓𝑔ℎ𝑖𝑗𝑘𝑙𝑚𝑛𝑜𝑝𝑞𝑟𝑠𝑡𝑢𝑣𝑤𝑥𝑦𝑧"),
+                d: splitChars("0123456789")
+            },
+            boldItalicSerif: {
+                u: splitChars("𝑨𝑩𝑪𝑫𝑬𝑭𝑮𝑯𝑰𝑱𝑲𝑳𝑴𝑵𝑶𝑷𝑸𝑹𝑺𝑻𝑼𝑽𝑾𝑿𝒀𝒁"),
+                l: splitChars("𝒂𝒃𝒄𝒅𝒆𝒇𝒈𝒉𝒊𝒋𝒌𝒍𝒎𝒏𝒐𝒑𝒒𝒓𝒔𝒕𝒖𝒗𝒘𝒙𝒚𝒛"),
+                d: splitChars("𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗")
+            },
+            sansBold: {
+                u: splitChars("𝗔𝗕𝗖𝗗𝗘𝗙𝗚𝗛𝗜𝗝𝗞𝗟𝗠𝗡𝗢𝗣𝗤𝗥𝗦𝗧𝗨𝗩𝗪𝗫𝗬𝗭"),
+                l: splitChars("𝗮𝗯𝗰𝗱𝗲𝗳𝗴𝗵𝗶𝗷𝗸𝗹𝗺𝗻𝗼𝗽𝗾𝗿𝘀𝘁𝘂𝘃𝘄𝘅𝘆𝘇"),
+                d: splitChars("𝟬𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟴𝟵")
+            },
+            sansItalic: {
+                u: splitChars("𝘈𝘉𝘊𝘋𝘌𝘍𝘎𝘏𝘐𝘑𝘒𝘓𝘔𝘕𝘖𝘗𝘘𝘙𝘚𝘛𝘜𝘝𝘞𝘟𝘠𝘡"),
+                l: splitChars("𝘢𝘣𝘤𝘥𝘦𝘧𝘨𝘩𝘪𝘫𝘬𝘭𝘮𝘯𝘰𝘱𝘲𝘳𝘴𝘵𝘶𝘷𝘸𝘹𝘺𝘻"),
+                d: splitChars("0123456789")
+            },
+            sansBoldItalic: {
+                u: splitChars("𝘼𝘽𝘾𝘿𝙀𝙁𝙂𝙃𝙄𝙅𝙆𝙇𝙈𝙉𝙊𝙋𝙌𝙍𝙎𝙏𝙐𝙑𝙒𝙓𝙔𝙕"),
+                l: splitChars("𝙖𝙗𝙘𝙙𝙚𝙛𝙜𝙝𝙞𝙟𝙠𝙡𝙢𝙣𝙤𝙥𝙦𝙧𝙨𝙩𝙪𝙫𝙬𝙭𝙮𝙯"),
+                d: splitChars("𝟬𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟴𝟵")
+            },
+            script: {
+                u: splitChars("𝒜ℬ𝒞𝒟ℰℱ𝒢ℋℐ𝒥𝒦ℒℳ𝒩𝒪𝒫𝒬ℛ𝒮𝒯𝒰𝒱𝒲𝒳𝒴𝒵"),
+                l: splitChars("𝒶𝒷𝒸𝒹ℯ𝒻ℊ𝒽𝒾𝒿𝓀𝓁𝓂𝓃ℴ𝓅𝓆𝓇𝓈𝓉𝓊𝓋𝓌𝓍𝓎𝓏"),
+                d: splitChars("0123456789")
+            },
+            boldScript: {
+                u: splitChars("𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩"),
+                l: splitChars("𝓪𝓫𝓬𝓭𝓮𝓯𝓰𝓱𝓲𝓳𝓴𝓵𝓶𝓷𝓸𝓹𝓺𝓻𝓼𝓽𝓾𝓿𝔀𝔁𝔂𝔃"),
+                d: splitChars("𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗")
+            },
+            fraktur: {
+                u: splitChars("𝔄𝔅ℭ𝔇𝔈𝔉𝔊ℌℑ𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔ℜ𝔖𝔗𝔘𝔙𝔚𝔛𝔜ℨ"),
+                l: splitChars("𝔞𝔟𝔠𝔡𝔢𝔣𝔤𝔥𝔦𝔧𝔨𝔩𝔪𝔫𝔬𝔭𝔮𝔯𝔰𝔱𝔲𝔳𝔴𝔵𝔶𝔷"),
+                d: splitChars("0123456789")
+            },
+            boldFraktur: {
+                u: splitChars("𝕬𝕭𝕮𝕯𝕰𝕱𝕲𝕳𝕴𝕵𝕶𝕷𝕸𝕹𝕺𝕻𝕼𝕽𝕾𝕿𝖀𝖁𝖂𝖃𝖄𝖅"),
+                l: splitChars("𝖆𝖇𝖈𝖉𝖊𝖋𝖌𝖍𝖎𝖏𝖐𝖑𝖒𝖓𝖔𝖕𝖖𝖗𝖘𝖙𝖚𝖛𝖜𝖝𝖞𝖟"),
+                d: splitChars("𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗")
+            },
+            doubleStruck: {
+                u: splitChars("𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ"),
+                l: splitChars("𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝕢𝕣𝕤𝕥𝕦𝕧𝕨𝕩𝕪𝕫"),
+                d: splitChars("𝟘𝟙𝟚𝟛𝟜𝟝𝟞𝟟𝟠𝟡")
+            },
+            monospace: {
+                u: splitChars("𝙰𝙱𝙲𝙳𝙴𝙵𝙶𝙷𝙸𝙹𝙺𝙻𝙼𝙽𝙾𝙿𝚀𝚁𝚂𝚃𝚄𝚅𝚆𝚇𝚈𝚉"),
+                l: splitChars("𝚊𝚋𝚌𝚍𝚎𝚏𝚐𝚑𝚒𝚓𝚔𝚕𝚖𝚗𝚘𝚙𝚚𝚛𝚜𝚝𝚞𝚟𝚠𝚡𝚢𝚣"),
+                d: splitChars("𝟶𝟷𝟸𝟹𝟺𝟻𝟼𝟽𝟾𝟿")
+            },
+            smallCaps: {
+                u: splitChars("ABCDEFGHIJKLMNOPQRSTUVWXYZ"),
+                l: splitChars("ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢ"),
+                d: splitChars("0123456789")
+            },
+            fullwidth: {
+                u: splitChars("ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ"),
+                l: splitChars("ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ"),
+                d: splitChars("０１２３４５６７８９")
+            },
+            circled: {
+                u: splitChars("ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ"),
+                l: splitChars("ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ"),
+                d: splitChars("⓪①②③④⑤⑥⑦⑧⑨")
+            },
+            negCircled: {
+                u: splitChars("🅐🅑🅒🅓🅔🅕🅖🅗🅘🅙🅚🅛🅜🅝🅞🅟🅠🅡🅢🅣🅤🅥🅦🅧🅨🅩"),
+                l: splitChars("🅐🅑🅒🅓🅔🅕🅖🅗🅘🅙🅚🅛🅜🅝🅞🅟🅠🅡🅢🅣🅤🅥🅦🅧🅨🅩"),
+                d: splitChars("⓿❶❷❸❹❺❻❼❽❾")
+            },
+            squared: {
+                u: splitChars("🄰🄱🄲🄳🄴🄵🄶🄷🄸🄹🄺🄻🄼🄽🄾🄿🅀🅁🅂🅃🅄🅅🅆🅇🅈🅉"),
+                l: splitChars("🄰🄱🄲🄳🄴🄵🄶🄷🄸🄹🄺🄻🄼🄽🄾🄿🅀🅁🅂🅃🅄🅅🅆🅇🅈🅉"),
+                d: splitChars("0123456789")
+            },
+            negSquared: {
+                u: splitChars("🅰🅱🅲🅳🅴🅵🅶🅷🅸🅹🅺🅻🅼🅽🅾🅿🆀🆁🆂🆃🆄🆅🆆🆇🆈🆉"),
+                l: splitChars("🅰🅱🅲🅳🅴🅵🅶🅷🅸🅹🅺🅻🅼🅽🅾🅿🆀🆁🆂🆃🆄🆅🆆🆇🆈🆉"),
+                d: splitChars("0123456789")
+            },
+            parenthesized: {
+                u: splitChars("🄐🄑🄒🄓🄔🄕🄖🄗🄘🄙🄚🄛🄜🄝🄞🄟🄠🄡🄢🄣🄤🄥🄦🄧🄨🄩"),
+                l: splitChars("⒜⒝⒞⒟⒠⒡⒢⒣⒤⒥⒦⒧⒨⒩⒪⒫⒬⒭⒮⒯⒰⒱⒲⒳⒴⒵"),
+                d: splitChars("0⑴⑵⑶⑷⑸⑹⑺⑻⑼")
+            },
+            superscript: {
+                u: splitChars("ᴬᴮᶜᴰᴱᶠᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾQᴿˢᵀᵁⱽᵂˣʸᶻ"),
+                l: splitChars("ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖqʳˢᵗᵘᵛʷˣʸᶻ"),
+                d: splitChars("⁰¹²³⁴⁵⁶⁷⁸⁹")
+            },
+            subscript: {
+                u: splitChars("ₐBCDₑFGₕᵢⱼₖₗₘₙₒₚQᵣₛₜᵤᵥWₓYZ"),
+                l: splitChars("ₐbcdₑfgₕᵢⱼₖₗₘₙₒₚqᵣₛₜᵤᵥwₓyz"),
+                d: splitChars("₀₁₂₃₄₅₆₇₈₉")
+            },
+            regionalFlags: {
+                u: ["🇦","🇧","🇨","🇩","🇪","🇫","🇬","🇭","🇮","🇯","🇰","🇱","🇲","🇳","🇴","🇵","🇶","🇷","🇸","🇹","🇺","🇻","🇼","🇽","🇾","🇿"],
+                l: ["🇦","🇧","🇨","🇩","🇪","🇫","🇬","🇭","🇮","🇯","🇰","🇱","🇲","🇳","🇴","🇵","🇶","🇷","🇸","🇹","🇺","🇻","🇼","🇽","🇾","🇿"],
+                d: splitChars("0123456789")
+            },
+            fairyTale: {
+                u: splitChars("ᏗᏰፈᎴᏋᎦᎶᏂᎥᏠᏦᏝᎷᏁᎧᎮᎤᏒᏕᏖᏬᏉᏇጀᎩᏠ"),
+                l: splitChars("ᏗᏰፈᎴᏋᎦᎶᏂᎥᏠᏦᏝᎷᏁᎧᎮᎤᏒᏕᏖᏬᏉᏇጀᎩᏠ"),
+                d: splitChars("0123456789")
+            },
+            fauxCyrillic: {
+                u: splitChars("ДБҀDЄFGHЇJКLМИФPǪЯSТЦVЩЖЧZ"),
+                l: splitChars("дбҁdєfghїjкlмифpǫяsтцvщжчz"),
+                d: splitChars("0123456789")
+            },
+            greekStyle: {
+                u: splitChars("ΛƁƇƊЄƑƓӇƖʆƘԼMƝƠƤƢƦƧƬƲƔƜҲƳȤ"),
+                l: splitChars("αв¢∂єƒgнιנкℓмησρqяѕтυνωχуz"),
+                d: splitChars("0123456789")
+            },
+            asianCjk: {
+                u: splitChars("卂乃匚ᗪ乇千Ꮆ卄丨ﾌҜㄥ爪几ㄖ卩Ɋ尺丂ㄒㄩᐯ山乂ㄚ乙"),
+                l: splitChars("卂乃匚ᗪ乇千Ꮆ卄丨ﾌҜㄥ爪几ㄖ卩Ɋ尺丂ㄒㄩᐯ山乂ㄚ乙"),
+                d: splitChars("0123456789")
+            },
+            mathBold: {
+                u: splitChars("𝚨𝚩𝚪𝚫𝚬𝚭𝚮𝚯𝚰𝚱𝚲𝚳𝚴𝚵𝚶𝚷𝚸𝚹𝚺𝚻𝚼𝚽𝚾𝚿𝛀𝚭"),
+                l: splitChars("𝛂𝛃𝛄𝛅𝛆𝛇𝛈𝛉𝛊𝛋𝛌𝛍𝛎𝛏𝛐𝛑𝛒𝛓𝛔𝛕𝛖𝛗𝛘𝛙𝛚𝛇"),
+                d: splitChars("𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗")
+            },
+            mathItalic: {
+                u: splitChars("𝛢𝛣𝛤𝛥𝛦𝛧𝛨𝛩𝛪𝛫𝛬𝛭𝛮𝛯𝛰𝛱𝛲𝛳𝛴𝛵𝛶𝛷𝛸𝛹𝛺𝛧"),
+                l: splitChars("𝛼𝛽𝛾𝛿𝜀𝜁𝜂𝜃𝜄𝜅𝜆𝜇𝜈𝜉𝜊𝜋𝜌𝜍𝜎𝜏𝜐𝜑𝜒𝜓omega𝜁").slice(0, 26),
+                d: splitChars("0123456789")
+            }
+        };
+
+        const FLIP_CHARS = {
+            'a': 'ɐ', 'b': 'q', 'c': 'ɔ', 'd': 'p', 'e': 'ǝ', 'f': 'ɟ', 'g': 'ƃ', 'h': 'ɥ',
+            'i': 'ᴉ', 'j': 'ɾ', 'k': 'ʞ', 'l': 'l', 'm': 'ɯ', 'n': 'u', 'o': 'o', 'p': 'd',
+            'q': 'b', 'r': 'ɹ', 's': 's', 't': 'ʇ', 'u': 'n', 'v': 'ʌ', 'w': 'ʍ', 'x': 'x',
+            'y': 'ʎ', 'z': 'z',
+            'A': '∀', 'B': '𐐒', 'C': 'Ɔ', 'D': '◖', 'E': 'Ǝ', 'F': 'Ⅎ', 'G': 'פ', 'H': 'H',
+            'I': 'I', 'J': 'ſ', 'K': 'ʞ', 'L': '˥', 'M': 'W', 'N': 'N', 'O': 'O', 'P': 'Ԁ',
+            'Q': 'Q', 'R': 'ᴚ', 'S': 'S', 'T': '⊥', 'U': '∩', 'V': 'Λ', 'W': 'M', 'X': 'X',
+            'Y': '⅄', 'Z': 'Z',
+            '1': 'Ɩ', '2': 'ᄅ', '3': 'Ɛ', '4': 'ㄣ', '5': 'ϛ', '6': '9', '7': 'ㄥ', '8': '8',
+            '9': '6', '0': '0', '.': '˙', ',': '\'', '\'': ',', '"': '„', '?': '¿', '!': '¡',
+            '(': ')', ')': '(', '[': ']', ']': '[', '{': '}', '}': '{', '<': '>', '>': '<',
+            '&': '⅋', '_': '‾'
+        };
+
+        const MIRROR_CHARS = {
+            'a': 'ɒ', 'b': 'd', 'c': 'ɔ', 'd': 'b', 'e': 'ɘ', 'f': 'Ꮈ', 'g': 'ǫ', 'h': 'ʜ',
+            'i': 'i', 'j': 'ꞁ', 'k': 'ʞ', 'l': 'l', 'm': 'm', 'n': 'ᴎ', 'o': 'o', 'p': 'q',
+            'q': 'p', 'r': 'ɿ', 's': 'ƨ', 't': 'ƚ', 'u': 'u', 'v': 'v', 'w': 'w', 'x': 'x',
+            'y': 'y', 'z': 'z',
+            'A': 'A', 'B': 'ᙠ', 'C': 'Ɔ', 'D': 'ᗡ', 'E': 'Ǝ', 'F': 'ꟻ', 'G': 'Ꭾ', 'H': 'H',
+            'I': 'I', 'J': 'Ⴑ', 'K': '⋊', 'L': '⅃', 'M': 'M', 'N': 'И', 'O': 'O', 'P': 'ꟼ',
+            'Q': 'Ọ', 'R': 'Я', 'S': 'Ƨ', 'T': 'T', 'U': 'U', 'V': 'V', 'W': 'W', 'X': 'X',
+            'Y': 'Y', 'Z': 'Ƹ'
+        };
+
+        function convertText(str, map, joiner = "") {
+            if (!str) return "";
+            const result = [];
+            for (const ch of str) {
+                const ui = UPPER_STD.indexOf(ch);
+                if (ui !== -1 && map.u[ui]) {
+                    result.push(map.u[ui]);
+                    continue;
+                }
+                const li = LOWER_STD.indexOf(ch);
+                if (li !== -1 && map.l[li]) {
+                    result.push(map.l[li]);
+                    continue;
+                }
+                const di = DIGIT_STD.indexOf(ch);
+                if (di !== -1 && map.d && map.d[di]) {
+                    result.push(map.d[di]);
+                    continue;
+                }
+                result.push(ch);
+            }
+            return result.join(joiner);
+        }
+
+        function addCombining(str, mark) {
+            if (!str) return "";
+            return Array.from(str).map(c => c === ' ' ? ' ' : c + mark).join('');
+        }
+
+        function flipUpsideDown(str) {
+            return Array.from(str).map(c => FLIP_CHARS[c] || c).reverse().join('');
+        }
+
+        function mirrorReverse(str) {
+            return Array.from(str).map(c => MIRROR_CHARS[c] || c).reverse().join('');
+        }
+
+        function zalgoCursed(str) {
+            const marks = ['\u030d', '\u030e', '\u0304', '\u0305', '\u033f', '\u0311', '\u0306', '\u0310', '\u0352', '\u033c', '\u0345', '\u0347'];
+            return Array.from(str).map((c, i) => {
+                if (c === ' ') return ' ';
+                return c + marks[i % marks.length] + marks[(i + 4) % marks.length];
+            }).join('');
+        }
+
+        // Helpers for template expressions
+        const tBoldSerif = (t) => convertText(t, UNICODE_MAPS.boldSerif);
+        const tItalicSerif = (t) => convertText(t, UNICODE_MAPS.italicSerif);
+        const tBoldItalicSerif = (t) => convertText(t, UNICODE_MAPS.boldItalicSerif);
+        const tSansBold = (t) => convertText(t, UNICODE_MAPS.sansBold);
+        const tSansItalic = (t) => convertText(t, UNICODE_MAPS.sansItalic);
+        const tSansBoldItalic = (t) => convertText(t, UNICODE_MAPS.sansBoldItalic);
+        const tScript = (t) => convertText(t, UNICODE_MAPS.script);
+        const tScriptBold = (t) => convertText(t, UNICODE_MAPS.boldScript);
+        const tFraktur = (t) => convertText(t, UNICODE_MAPS.fraktur);
+        const tFrakturBold = (t) => convertText(t, UNICODE_MAPS.boldFraktur);
+        const tDoubleStruck = (t) => convertText(t, UNICODE_MAPS.doubleStruck);
+        const tMonospace = (t) => convertText(t, UNICODE_MAPS.monospace);
+        const tSmallCaps = (t) => convertText(t, UNICODE_MAPS.smallCaps);
+        const tFullwidth = (t) => convertText(t, UNICODE_MAPS.fullwidth);
+
+        /**
+         * 2. 72+ FANCY FONTS CATALOG
+         */
+        const FANCY_FONTS = [
+            // 30 Pro Gaming & Aesthetic Decorated Frames
+            { id: 'f-game-1', name: 'Pro Gamer Crown', category: 'Gaming / Pro', fn: (t) => `꧁༒☬${tFrakturBold(t)}☬༒꧂` },
+            { id: 'f-game-2', name: 'AWM Sniper Rifle', category: 'Gaming / Pro', fn: (t) => `▄︻デ${tSansBold(t)}══━一` },
+            { id: 'f-game-3', name: 'Shinobi Clan Tag', category: 'Gaming / Pro', fn: (t) => `乡${tSansBold(t)}乡` },
+            { id: 'f-game-4', name: 'Royal King Crown', category: 'Gothic & Dark', fn: (t) => `♛ ${tFraktur(t)} ♛` },
+            { id: 'f-game-5', name: 'Deadly Reaper Tag', category: 'Gothic & Dark', fn: (t) => `☠︎ ༒ ${tFrakturBold(t)} ༒ ☠︎` },
+            { id: 'f-game-6', name: 'Tibetan Angel Wings', category: 'Gaming / Pro', fn: (t) => `༺ཌ༈${t}༈ད༻` },
+            { id: 'f-game-7', name: 'King Emblem Tag', category: 'Gaming / Pro', fn: (t) => `亗 ${tFrakturBold(t)} 亗` },
+            { id: 'f-game-8', name: 'Sniper Scope', category: 'Gaming / Pro', fn: (t) => `︻デ═一 ${tSansBold(t)}` },
+            { id: 'f-game-9', name: 'Cyber Star Matrix', category: 'Gaming / Pro', fn: (t) => `【★】${tSansBold(t)}【★】` },
+            { id: 'f-game-10', name: 'Japanese Katakana Box', category: 'Aesthetic', fn: (t) => `『${tSansBold(t)}』` },
+            { id: 'f-game-11', name: 'Skull Dark Gothic', category: 'Gothic & Dark', fn: (t) => `💀 ${tFrakturBold(t)} 💀` },
+            { id: 'f-game-12', name: 'Lightning Strike Gothic', category: 'Gothic & Dark', fn: (t) => `⚡${tFrakturBold(t)}⚡` },
+            { id: 'f-game-13', name: 'Rose Aesthetic Frame', category: 'Aesthetic', fn: (t) => `🌹🥀 ${tScript(t)} 🥀🌹` },
+            { id: 'f-game-14', name: 'Aesthetic Cloud Sparkle', category: 'Aesthetic', fn: (t) => `☁️✨ ${tScriptBold(t)} ✨☁️` },
+            { id: 'f-game-15', name: 'Anime Star Banner', category: 'Gaming / Pro', fn: (t) => `★彡[ ${tSansBold(t)} ]彡★` },
+            { id: 'f-game-16', name: 'Swirl Wave Banner', category: 'Symbols & Frames', fn: (t) => `×º°”˜\`”°º× ${tScriptBold(t)} ×º°”˜\`”°º×` },
+            { id: 'f-game-17', name: 'Cyber Block Gradient', category: 'Symbols & Frames', fn: (t) => `░▒▓█ ${tSansBold(t)} █▓▒░` },
+            { id: 'f-game-18', name: 'Sacred Cross Flourish', category: 'Gothic & Dark', fn: (t) => `꧁ঔৣ☬✞${tFrakturBold(t)}✞☬ঔৣ꧂` },
+            { id: 'f-game-19', name: 'Esports Guild Tag', category: 'Gaming / Pro', fn: (t) => `么 ${tSansBold(t)} 么` },
+            { id: 'f-game-20', name: 'Trident Dark Emblem', category: 'Gaming / Pro', fn: (t) => `༒☬${tFrakturBold(t)}☬༒` },
+            { id: 'f-game-21', name: 'Curved Angle Brackets', category: 'Symbols & Frames', fn: (t) => `⧼${tSmallCaps(t)}⧽` },
+            { id: 'f-game-22', name: 'Triple Chevron Frame', category: 'Symbols & Frames', fn: (t) => `⫷${tSansBold(t)}⫸` },
+            { id: 'f-game-23', name: 'Diamond Crest', category: 'Symbols & Frames', fn: (t) => `❖ ${tDoubleStruck(t)} ❖` },
+            { id: 'f-game-24', name: 'Starlight Ribbon', category: 'Aesthetic', fn: (t) => `★·.·´¯\`·.·★ ${tScriptBold(t)} ★·.·´¯\`·.·★` },
+            { id: 'f-game-25', name: 'Dot Wave Flourish', category: 'Symbols & Frames', fn: (t) => `•°¯\`•• ${tScript(t)} ••´¯°•` },
+            { id: 'f-game-26', name: 'Equalizer Soundwave', category: 'Aesthetic', fn: (t) => `ıllıllı ${tSansBold(t)} ıllıllı` },
+            { id: 'f-game-27', name: 'Smiley Katakana Tag', category: 'Gaming / Pro', fn: (t) => `【ツ】${tSansBold(t)}` },
+            { id: 'f-game-28', name: 'Slayer Cross Blades', category: 'Gothic & Dark', fn: (t) => `乂 ${tFrakturBold(t)} 乂` },
+            { id: 'f-game-29', name: 'Black Heart Wings', category: 'Gothic & Dark', fn: (t) => `𓆩🖤𓆪 ${tFrakturBold(t)} 𓆩🖤𓆪` },
+            { id: 'f-game-30', name: 'Aesthetic Arrow Pointer', category: 'Aesthetic', fn: (t) => `╰┈➤ ${tScriptBold(t)}` },
+
+            // Core Unicode Font Styles (44 Styles = 74 Total)
+            { id: 'f-bold-serif', name: 'Bold Serif', category: 'Bold & Serif', fn: tBoldSerif },
+            { id: 'f-italic-serif', name: 'Italic Serif', category: 'Bold & Serif', fn: tItalicSerif },
+            { id: 'f-bold-italic-serif', name: 'Bold Italic Serif', category: 'Bold & Serif', fn: tBoldItalicSerif },
+            { id: 'f-sans-bold', name: 'Sans-Serif Bold', category: 'Bold & Serif', fn: tSansBold },
+            { id: 'f-sans-italic', name: 'Sans-Serif Italic', category: 'Bold & Serif', fn: tSansItalic },
+            { id: 'f-sans-bold-italic', name: 'Sans-Serif Bold Italic', category: 'Bold & Serif', fn: tSansBoldItalic },
+            { id: 'f-script', name: 'Elegant Script / Cursive', category: 'Cursive & Script', fn: tScript },
+            { id: 'f-bold-script', name: 'Bold Cursive Script', category: 'Cursive & Script', fn: tScriptBold },
+            { id: 'f-fraktur', name: 'Medieval Fraktur / Gothic', category: 'Gothic & Dark', fn: tFraktur },
+            { id: 'f-bold-fraktur', name: 'Bold Fraktur / Dark Gothic', category: 'Gothic & Dark', fn: tFrakturBold },
+            { id: 'f-double-struck', name: 'Double-Struck (Blackboard)', category: 'Bold & Serif', fn: tDoubleStruck },
+            { id: 'f-monospace', name: 'Monospace Typewriter', category: 'Aesthetic', fn: tMonospace },
+            { id: 'f-small-caps', name: 'Aesthetic Small Caps', category: 'Aesthetic', fn: tSmallCaps },
+            { id: 'f-fullwidth', name: 'Vaporwave / Fullwidth', category: 'Aesthetic', fn: tFullwidth },
+            { id: 'f-circled', name: 'Circled / Bubble', category: 'Symbols & Frames', fn: (t) => convertText(t, UNICODE_MAPS.circled) },
+            { id: 'f-neg-circled', name: 'Negative Filled Bubble', category: 'Symbols & Frames', fn: (t) => convertText(t, UNICODE_MAPS.negCircled) },
+            { id: 'f-squared', name: 'Squared Box Letters', category: 'Symbols & Frames', fn: (t) => convertText(t, UNICODE_MAPS.squared) },
+            { id: 'f-neg-squared', name: 'Negative Filled Square', category: 'Symbols & Frames', fn: (t) => convertText(t, UNICODE_MAPS.negSquared) },
+            { id: 'f-parenthesized', name: 'Parenthesized Letters', category: 'Symbols & Frames', fn: (t) => convertText(t, UNICODE_MAPS.parenthesized) },
+            { id: 'f-upside-down', name: 'Upside Down / Flipped', category: 'Fun & Glitch', fn: flipUpsideDown },
+            { id: 'f-mirror', name: 'Mirror / Reversed', category: 'Fun & Glitch', fn: mirrorReverse },
+            { id: 'f-superscript', name: 'Tiny Superscript', category: 'Aesthetic', fn: (t) => convertText(t, UNICODE_MAPS.superscript) },
+            { id: 'f-subscript', name: 'Tiny Subscript', category: 'Aesthetic', fn: (t) => convertText(t, UNICODE_MAPS.subscript) },
+            { id: 'f-strikethrough', name: 'Strikethrough', category: 'Fun & Glitch', fn: (t) => addCombining(t, '\u0336') },
+            { id: 'f-double-strike', name: 'Double Strikethrough', category: 'Fun & Glitch', fn: (t) => addCombining(t, '\u0335') },
+            { id: 'f-underline', name: 'Underline', category: 'Aesthetic', fn: (t) => addCombining(t, '\u0332') },
+            { id: 'f-double-underline', name: 'Double Underline', category: 'Aesthetic', fn: (t) => addCombining(t, '\u0333') },
+            { id: 'f-slash', name: 'Slash Through', category: 'Fun & Glitch', fn: (t) => addCombining(t, '\u0337') },
+            { id: 'f-tilde', name: 'Wave / Tilde Overlay', category: 'Fun & Glitch', fn: (t) => addCombining(t, '\u0334') },
+            { id: 'f-overline', name: 'Dotted / Overline Bar', category: 'Aesthetic', fn: (t) => addCombining(t, '\u0305') },
+            { id: 'f-zigzag', name: 'Lightning / Zigzag Top', category: 'Fun & Glitch', fn: (t) => addCombining(t, '\u035b') },
+            { id: 'f-zalgo', name: 'Cursed / Zalgo Glitch', category: 'Fun & Glitch', fn: zalgoCursed },
+            { id: 'f-flags', name: 'Regional Indicator Flags', category: 'Symbols & Frames', fn: (t) => convertText(t, UNICODE_MAPS.regionalFlags, ' ') },
+            { id: 'f-fairy', name: 'Fairy Tale / Curly', category: 'Cursive & Script', fn: (t) => convertText(t, UNICODE_MAPS.fairyTale) },
+            { id: 'f-rusify', name: 'Rusify / Faux Cyrillic', category: 'Fun & Glitch', fn: (t) => convertText(t, UNICODE_MAPS.fauxCyrillic) },
+            { id: 'f-greek', name: 'Greek Mystic Style', category: 'Aesthetic', fn: (t) => convertText(t, UNICODE_MAPS.greekStyle) },
+            { id: 'f-asian', name: 'Asian / CJK Brush Style', category: 'Gaming / Pro', fn: (t) => convertText(t, UNICODE_MAPS.asianCjk) },
+            { id: 'f-math-bold', name: 'Math Greek Bold', category: 'Bold & Serif', fn: (t) => convertText(t, UNICODE_MAPS.mathBold) },
+            { id: 'f-math-italic', name: 'Math Greek Italic', category: 'Bold & Serif', fn: (t) => convertText(t, UNICODE_MAPS.mathItalic) },
+            { id: 'f-wide-spaced', name: 'Aesthetic Wide Spaced', category: 'Aesthetic', fn: (t) => Array.from(tSansBold(t)).join(' ') },
+            { id: 'f-royal-flourish', name: 'Royal Script Flourish', category: 'Cursive & Script', fn: (t) => `꧁ ${tScriptBold(t)} ꧂` },
+            { id: 'f-sparkle-cursive', name: 'Starlight Cursive', category: 'Cursive & Script', fn: (t) => `✧･ﾟ: *✧･ﾟ:* ${tScript(t)} *:･ﾟ✧*:･ﾟ✧` },
+            { id: 'f-dark-cross', name: 'Inverted Cross Gothic', category: 'Gothic & Dark', fn: (t) => `⸸ ${tFrakturBold(t)} ⸸` },
+            { id: 'f-dragon-lord', name: 'Dragon Lord Emblem', category: 'Gaming / Pro', fn: (t) => `🐉 ꧁ ${tFrakturBold(t)} ꧂ 🐉` }
+        ];
+
+        const FONT_CATEGORIES = [
+            'All',
+            'Gaming / Pro',
+            'Aesthetic',
+            'Gothic & Dark',
+            'Bold & Serif',
+            'Cursive & Script',
+            'Symbols & Frames',
+            'Fun & Glitch'
+        ];
+
+        /**
+         * 3. 70 STYLISH JAPANESE KAOMOJIS CATALOG (60+ Requirement Exceeded)
+         */
+        const KAOMOJI_ITEMS = [
+            // Cute & Happy (10)
+            { id: 'k-1', text: '(づ｡◕‿‿◕｡)づ', label: 'Warm Hug', category: 'Cute & Happy' },
+            { id: 'k-2', text: '(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧', label: 'Magic Sparkles', category: 'Cute & Happy' },
+            { id: 'k-3', text: '(づ￣ ³￣)づ', label: 'Sweet Kiss Hug', category: 'Cute & Happy' },
+            { id: 'k-4', text: '(｡◕‿◕｡)', label: 'Innocent Smile', category: 'Cute & Happy' },
+            { id: 'k-5', text: 'ヽ(´▽`)/', label: 'Happy Hands Up', category: 'Cute & Happy' },
+            { id: 'k-6', text: '(✿◠‿◠)', label: 'Flower Smile', category: 'Cute & Happy' },
+            { id: 'k-7', text: '(●´ω｀●)', label: 'Cozy Happy', category: 'Cute & Happy' },
+            { id: 'k-8', text: '(☆▽☆)', label: 'Starry Eyes', category: 'Cute & Happy' },
+            { id: 'k-9', text: '٩(◕‿◕｡)۶', label: 'Cheerful Joy', category: 'Cute & Happy' },
+            { id: 'k-10', text: '(✯◡✯)', label: 'Sparkle Grin', category: 'Cute & Happy' },
+
+            // Love & Blush (10)
+            { id: 'k-11', text: '(♡°▽°♡)', label: 'Heartstruck', category: 'Love & Blush' },
+            { id: 'k-12', text: '(´,,•ω•,,)♡', label: 'Shy Crush', category: 'Love & Blush' },
+            { id: 'k-13', text: '(⁄ ⁄>⁄ ▽ ⁄<⁄ ⁄)', label: 'Super Blushing', category: 'Love & Blush' },
+            { id: 'k-14', text: '(●♡∀♡)', label: 'In Love', category: 'Love & Blush' },
+            { id: 'k-15', text: '(♥ω♥*)', label: 'Adorable Hearts', category: 'Love & Blush' },
+            { id: 'k-16', text: '(｡♥‿♥｡)', label: 'Heart Eyes', category: 'Love & Blush' },
+            { id: 'k-17', text: '(๑°꒵°๑)･*♡', label: 'Floating Love', category: 'Love & Blush' },
+            { id: 'k-18', text: '(´♡‿♡`)', label: 'Dreamy Love', category: 'Love & Blush' },
+            { id: 'k-19', text: '( ˘ ³˘)♥', label: 'Blowing Heart Kiss', category: 'Love & Blush' },
+            { id: 'k-20', text: '(◍•ᴗ•◍)❤', label: 'Wholesome Heart', category: 'Love & Blush' },
+
+            // Cool & Swag (10)
+            { id: 'k-21', text: '(⌐■_■)', label: 'Deal With It Shades', category: 'Cool & Swag' },
+            { id: 'k-22', text: '(▀̿Ĺ̯▀̿ ̿)', label: 'Boss Shades', category: 'Cool & Swag' },
+            { id: 'k-23', text: '( •_•)>⌐■-■', label: 'Putting Shades On', category: 'Cool & Swag' },
+            { id: 'k-24', text: '(ง •̀_•́)ง', label: 'Determined Fist', category: 'Cool & Swag' },
+            { id: 'k-25', text: 'ᕦ(ò_óˇ)ᕤ', label: 'Flexing Power', category: 'Cool & Swag' },
+            { id: 'k-26', text: '(¬‿¬)', label: 'Smug Smirk', category: 'Cool & Swag' },
+            { id: 'k-27', text: '( •̀ᴗ•́ )و ̑̑', label: 'Victory Pump', category: 'Cool & Swag' },
+            { id: 'k-28', text: '(☞ﾟヮﾟ)☞', label: 'Right Finger Guns', category: 'Cool & Swag' },
+            { id: 'k-29', text: '☜(ﾟヮﾟ☜)', label: 'Left Finger Guns', category: 'Cool & Swag' },
+            { id: 'k-30', text: '(￣^￣)ゞ', label: 'Respect Salute', category: 'Cool & Swag' },
+
+            // Devil & Angry (10)
+            { id: 'k-31', text: '(╬ಠ益ಠ)', label: 'Pure Rage', category: 'Devil & Angry' },
+            { id: 'k-32', text: '(ノಠ益ಠ)ノ彡┻━┻', label: 'Furious Table Flip', category: 'Devil & Angry' },
+            { id: 'k-33', text: '(ψ｀∇´)ψ', label: 'Evil Devil Laugh', category: 'Devil & Angry' },
+            { id: 'k-34', text: '(▼皿▼#)', label: 'Menacing Glare', category: 'Devil & Angry' },
+            { id: 'k-35', text: '(｀皿´＃)', label: 'Triggered', category: 'Devil & Angry' },
+            { id: 'k-36', text: '凸(｀0´)凸', label: 'Double Attitude', category: 'Devil & Angry' },
+            { id: 'k-37', text: '(҂` ﾛ ´)凸', label: 'Angry Shout', category: 'Devil & Angry' },
+            { id: 'k-38', text: '(눈_눈)', label: 'Deadpan Stare', category: 'Devil & Angry' },
+            { id: 'k-39', text: '(¬_¬")', label: 'Annoyed Side-Eye', category: 'Devil & Angry' },
+            { id: 'k-40', text: '(◣_◢)', label: 'Demon Eyes', category: 'Devil & Angry' },
+
+            // Sad & Crying (10)
+            { id: 'k-41', text: '(╥﹏╥)', label: 'Crying Waterfall', category: 'Sad & Crying' },
+            { id: 'k-42', text: '(ಥ﹏ಥ)', label: 'Tearing Up', category: 'Sad & Crying' },
+            { id: 'k-43', text: '(｡•́︿•̀｡)', label: 'Sad Pout', category: 'Sad & Crying' },
+            { id: 'k-44', text: '(っ˘̩╭╮˘̩)っ', label: 'Need Comfort Hug', category: 'Sad & Crying' },
+            { id: 'k-45', text: '( ; ω ; )', label: 'Soft Tears', category: 'Sad & Crying' },
+            { id: 'k-46', text: '(｡T ω T｡)', label: 'Sobbing', category: 'Sad & Crying' },
+            { id: 'k-47', text: '(´；ω；`)', label: 'Heartbroken', category: 'Sad & Crying' },
+            { id: 'k-48', text: '(个_个)', label: 'Lonely Tears', category: 'Sad & Crying' },
+            { id: 'k-49', text: '(ಥ_ಥ)', label: 'Disappointed Cry', category: 'Sad & Crying' },
+            { id: 'k-50', text: '(｡╯︵╰｡)', label: 'Downcast', category: 'Sad & Crying' },
+
+            // Gaming & Weapons (10)
+            { id: 'k-51', text: '(ﾒ￣▽￣)︻┳═一', label: 'Sniper Aim', category: 'Gaming & Weapons' },
+            { id: 'k-52', text: '̿̿ ̿̿ ̿̿ ̿\'̿\'\\̵͇̿̿\\з= ( ▀ ͜͞ʖ▀) =ε/̵͇̿̿/’̿’̿ ̿ ̿̿ ̿̿ ̿̿', label: 'Dual Akimbo Agent', category: 'Gaming & Weapons' },
+            { id: 'k-53', text: '(ง\'̀-\'́)ง', label: '1v1 Boxer Stance', category: 'Gaming & Weapons' },
+            { id: 'k-54', text: '▬▬ι═══════ﺤ', label: 'Katana Blade', category: 'Gaming & Weapons' },
+            { id: 'k-55', text: '(ﾉ･ｪ･)ﾉ ⌒┫ ┻ ┣ ┳', label: 'Throwing Parts', category: 'Gaming & Weapons' },
+            { id: 'k-56', text: '┬─┬ノ( º _ ºノ)', label: 'Calmly Restoring Table', category: 'Gaming & Weapons' },
+            { id: 'k-57', text: 'ʕ•̫͡•ʕ•̫͡•ʔ•̫͡•ʔ•̫͡•ʕ•̫͡•ʔ', label: 'Squad Army', category: 'Gaming & Weapons' },
+            { id: 'k-58', text: 'ᕕ( ᐛ )ᕗ', label: 'Victory Strut', category: 'Gaming & Weapons' },
+            { id: 'k-59', text: '┌(▀Ĺ̯ ▀-͠ )┐', label: 'Tactical Guard', category: 'Gaming & Weapons' },
+            { id: 'k-60', text: '(╯°□°)╯︵ ┻━┻', label: 'Classic Rage Quit', category: 'Gaming & Weapons' },
+
+            // Shrug & Meme (5)
+            { id: 'k-61', text: '¯\\_(ツ)_/¯', label: 'Classic Shrug', category: 'Shrug & Meme' },
+            { id: 'k-62', text: '¯\\_( ͡° ͜ʖ ͡°)_/¯', label: 'Lenny Shrug', category: 'Shrug & Meme' },
+            { id: 'k-63', text: '( ͡° ͜ʖ ͡°)', label: 'Original Lenny Face', category: 'Shrug & Meme' },
+            { id: 'k-64', text: '(⊙_⊙)', label: 'Wide Eyed Shock', category: 'Shrug & Meme' },
+            { id: 'k-65', text: 'ಠ_ಠ', label: 'Look of Disapproval', category: 'Shrug & Meme' },
+
+            // Animals & Sparkles (5)
+            { id: 'k-66', text: '(=^･ω･^=)', label: 'Kawaii Cat', category: 'Animals & Sparkles' },
+            { id: 'k-67', text: 'ʕ•ᴥ•ʔ', label: 'Teddy Bear', category: 'Animals & Sparkles' },
+            { id: 'k-68', text: '(・∀・)', label: 'Happy Derp', category: 'Animals & Sparkles' },
+            { id: 'k-69', text: 'Ƹ̵̡Ӝ̵̨̄Ʒ', label: 'Aesthetic Butterfly', category: 'Animals & Sparkles' },
+            { id: 'k-70', text: '(づ｡◕‿‿◕｡)づ*:･ﾟ✧', label: 'Sparkle Hug', category: 'Animals & Sparkles' }
+        ];
+
+        const KAOMOJI_CATEGORIES = [
+            'All',
+            'Cute & Happy',
+            'Love & Blush',
+            'Cool & Swag',
+            'Devil & Angry',
+            'Sad & Crying',
+            'Gaming & Weapons',
+            'Shrug & Meme',
+            'Animals & Sparkles'
+        ];
+
+        /**
+         * 4. APPLICATION STATE & RANDOM NAME PRESETS
+         */
+        const RANDOM_NAMES = [
+            "Death",
+            "Shadow",
+            "Reaper",
+            "Phantom",
+            "Lucifer",
+            "Ghost",
+            "Venom"
+        ];
+        let randomNameIndex = 0;
+
+        let activeSection = 'fonts'; // 'fonts' | 'kaomojis'
+        let inputText = 'Death';
+        let selectedFontCat = 'All';
+        let selectedKaomojiCat = 'All';
+        let onlyFavorites = false;
+        let pinnedFavorites = [];
+
+        try {
+            const stored = localStorage.getItem('font_kaomoji_studio_favs');
+            if (stored) pinnedFavorites = JSON.parse(stored);
+        } catch (e) {
+            pinnedFavorites = [];
+        }
+
+        function persistFavorites() {
+            try {
+                localStorage.setItem('font_kaomoji_studio_favs', JSON.stringify(pinnedFavorites));
+            } catch (e) {}
+        }
+
+        /**
+         * 5. SECTION SWITCHING & RENDERING LOGIC
+         */
+        function switchSection(section) {
+            activeSection = section;
+            onlyFavorites = false;
+            syncFavToggleUI();
+
+            const tabFonts = document.getElementById('mainTabFonts');
+            const tabKaomojis = document.getElementById('mainTabKaomojis');
+            const inputContainer = document.getElementById('fontInputContainer');
+            const statusBadge = document.getElementById('liveModeStatus');
+            const fontsGrid = document.getElementById('fontsGrid');
+            const kaomojisGrid = document.getElementById('kaomojisGrid');
+
+            if (section === 'fonts') {
+                tabFonts.className = 'flex items-center gap-2 px-4 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-violet-600 text-white shadow-sm transition-all';
+                tabKaomojis.className = 'flex items-center gap-2 px-4 py-1.5 rounded-xl text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all';
+                inputContainer.classList.remove('hidden');
+                statusBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-violet-500 animate-pulse"></span> Real-Time Unicode Engine`;
+                fontsGrid.classList.remove('hidden');
+                kaomojisGrid.classList.add('hidden');
+                kaomojisGrid.classList.remove('grid');
+            } else {
+                tabKaomojis.className = 'flex items-center gap-2 px-4 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-indigo-600 text-white shadow-sm transition-all';
+                tabFonts.className = 'flex items-center gap-2 px-4 py-1.5 rounded-xl text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all';
+                inputContainer.classList.add('hidden');
+                statusBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span> One-Click Japanese Emoticons`;
+                fontsGrid.classList.add('hidden');
+                kaomojisGrid.classList.remove('hidden');
+                kaomojisGrid.classList.add('grid');
+            }
+
+            renderCategoryPills();
+            renderCurrentGrid();
+        }
+
+        function renderCategoryPills() {
+            const bar = document.getElementById('categoryBar');
+            const list = activeSection === 'fonts' ? FONT_CATEGORIES : KAOMOJI_CATEGORIES;
+            const current = activeSection === 'fonts' ? selectedFontCat : selectedKaomojiCat;
+
+            bar.innerHTML = list.map(cat => {
+                const isSelected = !onlyFavorites && current === cat;
+                const label = (cat === 'All' && activeSection === 'kaomojis') ? 'All (70)' : cat;
+                const styles = isSelected
+                    ? 'bg-violet-600 text-white border-violet-600 shadow-md shadow-violet-600/20'
+                    : 'bg-white dark:bg-obsidian-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:border-violet-500/60';
+
+                return `
+                    <button 
+                        onclick="chooseCategory('${cat}')"
+                        class="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold border whitespace-nowrap transition-all ${styles}"
+                    >
+                        ${label}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function renderCurrentGrid() {
+            if (activeSection === 'fonts') {
+                renderFontCards();
+            } else {
+                renderKaomojiCards();
+            }
+        }
+
+        function renderFontCards() {
+            const grid = document.getElementById('fontsGrid');
+            const empty = document.getElementById('emptyFavoritesState');
+            const counter = document.getElementById('itemsCounterText');
+
+            let list = FANCY_FONTS.filter(item => {
+                if (onlyFavorites) return pinnedFavorites.includes(item.id);
+                if (selectedFontCat === 'All') return true;
+                return item.category === selectedFontCat;
+            });
+
+            // Pin favorites to top
+            list.sort((a, b) => (pinnedFavorites.includes(b.id) ? 1 : 0) - (pinnedFavorites.includes(a.id) ? 1 : 0));
+
+            counter.textContent = `Showing ${list.length} fancy font style${list.length === 1 ? '' : 's'}`;
+
+            if (list.length === 0) {
+                grid.innerHTML = '';
+                empty.classList.remove('hidden');
+                lucide.createIcons();
+                return;
+            }
+            empty.classList.add('hidden');
+
+            const sourceText = inputText.trim().length > 0 ? inputText : 'Death';
+
+            grid.innerHTML = list.map(item => {
+                const transformed = item.fn(sourceText);
+                const isPinned = pinnedFavorites.includes(item.id);
+                const heartStyle = isPinned
+                    ? 'text-rose-500 bg-rose-500/15 border-rose-500/40'
+                    : 'text-slate-400 hover:text-rose-500 bg-slate-100 dark:bg-obsidian-850 border-transparent';
+
+                return `
+                    <div 
+                        onclick="handleCopyFont('${item.id}')"
+                        class="group flex flex-col justify-between p-4 sm:p-5 rounded-2xl bg-white dark:bg-obsidian-900 border ${isPinned ? 'border-rose-500/40' : 'border-slate-200/90 dark:border-slate-800'} hover:border-violet-500/70 shadow-sm hover:shadow-lg hover:shadow-violet-600/5 transition-all cursor-pointer"
+                    >
+                        <div class="flex items-center justify-between gap-2 mb-3">
+                            <div class="flex items-center gap-2 min-w-0">
+                                <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 truncate">${item.name}</span>
+                                ${isPinned ? '<span class="px-1.5 py-0.5 text-[10px] font-bold uppercase rounded-md bg-rose-500/15 text-rose-500">Pinned</span>' : ''}
+                            </div>
+                            <div onclick="event.stopPropagation()">
+                                <button 
+                                    onclick="togglePin('${item.id}')"
+                                    class="p-2 rounded-xl border transition-all ${heartStyle}"
+                                    title="${isPinned ? 'Unpin Favorite' : 'Pin to Top'}"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="${isPinned ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="py-1.5 mb-3 overflow-x-auto no-scrollbar">
+                            <p id="font-out-${item.id}" class="text-xl sm:text-2xl text-slate-900 dark:text-white tracking-wide break-words leading-relaxed select-all">
+                                ${sanitizeHTML(transformed)}
+                            </p>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-2.5 border-t border-slate-100 dark:border-slate-800/80">
+                            <span class="text-[11px] font-medium text-slate-400 dark:text-slate-500">${item.category}</span>
+                            <button 
+                                id="btn-copy-${item.id}"
+                                onclick="event.stopPropagation(); handleCopyFont('${item.id}')"
+                                class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold bg-violet-500/10 text-violet-600 dark:text-violet-300 hover:bg-violet-600 hover:text-white transition-all"
+                            >
+                                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        function renderKaomojiCards() {
+            const grid = document.getElementById('kaomojisGrid');
+            const empty = document.getElementById('emptyFavoritesState');
+            const counter = document.getElementById('itemsCounterText');
+
+            let list = KAOMOJI_ITEMS.filter(item => {
+                if (onlyFavorites) return pinnedFavorites.includes(item.id);
+                if (selectedKaomojiCat === 'All') return true;
+                return item.category === selectedKaomojiCat;
+            });
+
+            list.sort((a, b) => (pinnedFavorites.includes(b.id) ? 1 : 0) - (pinnedFavorites.includes(a.id) ? 1 : 0));
+
+            counter.textContent = `Showing ${list.length} Japanese Kaomoji${list.length === 1 ? '' : 's'}`;
+
+            if (list.length === 0) {
+                grid.innerHTML = '';
+                empty.classList.remove('hidden');
+                lucide.createIcons();
+                return;
+            }
+            empty.classList.add('hidden');
+
+            grid.innerHTML = list.map(item => {
+                const isPinned = pinnedFavorites.includes(item.id);
+                const heartStyle = isPinned
+                    ? 'text-rose-500 bg-rose-500/15 border-rose-500/40'
+                    : 'text-slate-400 hover:text-rose-500 bg-slate-100 dark:bg-obsidian-850 border-transparent';
+
+                return `
+                    <div 
+                        onclick="handleCopyKaomoji('${item.id}')"
+                        class="group flex flex-col justify-between p-4 sm:p-5 rounded-2xl bg-white dark:bg-obsidian-900 border ${isPinned ? 'border-rose-500/40' : 'border-slate-200/90 dark:border-slate-800'} hover:border-indigo-500/70 shadow-sm hover:shadow-lg hover:shadow-indigo-600/5 transition-all cursor-pointer"
+                    >
+                        <div class="flex items-center justify-between gap-2 mb-2">
+                            <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 truncate">${item.label}</span>
+                            <div onclick="event.stopPropagation()">
+                                <button 
+                                    onclick="togglePin('${item.id}')"
+                                    class="p-2 rounded-xl border transition-all ${heartStyle}"
+                                    title="${isPinned ? 'Unpin Favorite' : 'Pin to Top'}"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="${isPinned ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="py-3 text-center overflow-x-auto no-scrollbar">
+                            <p class="text-xl sm:text-2xl font-medium text-slate-900 dark:text-white tracking-wide whitespace-nowrap select-all">
+                                ${sanitizeHTML(item.text)}
+                            </p>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-2.5 border-t border-slate-100 dark:border-slate-800/80">
+                            <span class="text-[11px] font-medium text-slate-400 dark:text-slate-500">${item.category}</span>
+                            <button 
+                                id="btn-copy-${item.id}"
+                                onclick="event.stopPropagation(); handleCopyKaomoji('${item.id}')"
+                                class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold bg-indigo-500/10 text-indigo-600 dark:text-indigo-300 hover:bg-indigo-600 hover:text-white transition-all"
+                            >
+                                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        function refreshLivePreviews() {
+            const sourceText = inputText.trim().length > 0 ? inputText : 'Death';
+            FANCY_FONTS.forEach(item => {
+                const el = document.getElementById(`font-out-${item.id}`);
+                if (el) el.textContent = item.fn(sourceText);
+            });
+        }
+
+        function sanitizeHTML(str) {
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        /**
+         * 6. USER INTERACTIONS: INPUT, RANDOMIZER, FAVORITES, CLIPBOARD & SPEED-DIAL
+         */
+        const textInputEl = document.getElementById('textInput');
+        const charCountEl = document.getElementById('charCount');
+
+        textInputEl.addEventListener('input', (e) => {
+            inputText = e.target.value;
+            charCountEl.textContent = `${inputText.length} char${inputText.length === 1 ? '' : 's'}`;
+            refreshLivePreviews();
+        });
+
+        function cycleRandomName() {
+            randomNameIndex = (randomNameIndex + 1) % RANDOM_NAMES.length;
+            const nextName = RANDOM_NAMES[randomNameIndex];
+            textInputEl.value = nextName;
+            inputText = nextName;
+            charCountEl.textContent = `${nextName.length} chars`;
+            refreshLivePreviews();
+        }
+
+        function clearTextInput() {
+            textInputEl.value = '';
+            inputText = '';
+            charCountEl.textContent = '0 chars';
+            textInputEl.focus();
+            refreshLivePreviews();
+        }
+
+        function chooseCategory(cat) {
+            onlyFavorites = false;
+            if (activeSection === 'fonts') {
+                selectedFontCat = cat;
+            } else {
+                selectedKaomojiCat = cat;
+            }
+            syncFavToggleUI();
+            renderCategoryPills();
+            renderCurrentGrid();
+        }
+
+        function toggleFavoritesFilter() {
+            onlyFavorites = !onlyFavorites;
+            syncFavToggleUI();
+            renderCategoryPills();
+            renderCurrentGrid();
+        }
+
+        function syncFavToggleUI() {
+            const btn = document.getElementById('favToggleBtn');
+            const badge = document.getElementById('favBadge');
+            badge.textContent = pinnedFavorites.length;
+
+            if (onlyFavorites) {
+                btn.classList.add('border-rose-500', 'bg-rose-500/15', 'text-rose-500');
+            } else {
+                btn.classList.remove('border-rose-500', 'bg-rose-500/15', 'text-rose-500');
+            }
+        }
+
+        function togglePin(id) {
+            if (pinnedFavorites.includes(id)) {
+                pinnedFavorites = pinnedFavorites.filter(f => f !== id);
+                displayToast("Unpinned from favorites");
+            } else {
+                pinnedFavorites.push(id);
+                displayToast("Pinned to favorites!");
+            }
+            persistFavorites();
+            syncFavToggleUI();
+            renderCurrentGrid();
+        }
+
+        function writeToClipboard(text, onSuccess) {
+            const temp = document.createElement('textarea');
+            temp.value = text;
+            temp.style.position = 'fixed';
+            temp.style.opacity = '0';
+            document.body.appendChild(temp);
+            temp.select();
+
+            try {
+                document.execCommand('copy');
+                if (onSuccess) onSuccess();
+            } catch (err) {
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(text).then(() => {
+                        if (onSuccess) onSuccess();
+                    });
+                }
+            } finally {
+                document.body.removeChild(temp);
+            }
+        }
+
+        function handleCopyFont(id) {
+            const item = FANCY_FONTS.find(f => f.id === id);
+            if (!item) return;
+            const sourceText = inputText.trim().length > 0 ? inputText : 'Death';
+            const output = item.fn(sourceText);
+
+            writeToClipboard(output, () => {
+                animateCopyButton(id, 'violet');
+                const shortText = output.length > 28 ? output.slice(0, 28) + '...' : output;
+                displayToast(`Copied to clipboard: ${shortText}`);
+            });
+        }
+
+        function handleCopyKaomoji(id) {
+            const item = KAOMOJI_ITEMS.find(k => k.id === id);
+            if (!item) return;
+
+            writeToClipboard(item.text, () => {
+                animateCopyButton(id, 'indigo');
+                displayToast(`Copied to clipboard: ${item.text}`);
+            });
+        }
+
+        function animateCopyButton(id, color) {
+            const btn = document.getElementById(`btn-copy-${id}`);
+            if (!btn) return;
+            const prevHTML = btn.innerHTML;
+            const baseClass = color === 'indigo'
+                ? ['bg-indigo-500/10', 'text-indigo-600', 'dark:text-indigo-300']
+                : ['bg-violet-500/10', 'text-violet-600', 'dark:text-violet-300'];
+
+            btn.classList.remove(...baseClass);
+            btn.classList.add('bg-emerald-500', 'text-white');
+            btn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Copied!</span>
+            `;
+
+            setTimeout(() => {
+                btn.classList.add(...baseClass);
+                btn.classList.remove('bg-emerald-500', 'text-white');
+                btn.innerHTML = prevHTML;
+            }, 1300);
+        }
+
+        let toastTimer;
+        function displayToast(msg) {
+            const toast = document.getElementById('copyToast');
+            const label = document.getElementById('copyToastText');
+            label.textContent = msg;
+
+            toast.classList.remove('opacity-0', 'translate-y-4');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-4');
+            }, 2500);
+        }
+
+        function toggleTheme() {
+            const root = document.documentElement;
+            root.classList.toggle('dark');
+            try {
+                localStorage.setItem('font_kaomoji_studio_theme', root.classList.contains('dark') ? 'dark' : 'light');
+            } catch (e) {}
+        }
+
+        // Speed-Dial Support Toggle
+        let speedDialOpen = false;
+        function toggleSpeedDial() {
+            speedDialOpen = !speedDialOpen;
+            const items = document.getElementById('speedDialItems');
+            const closedIcon = document.getElementById('dialClosedIcon');
+            const openIcon = document.getElementById('dialOpenIcon');
+
+            if (speedDialOpen) {
+                items.classList.remove('opacity-0', 'translate-y-4', 'scale-95', 'pointer-events-none');
+                items.classList.add('opacity-100', 'translate-y-0', 'scale-100', 'pointer-events-auto');
+                closedIcon.classList.add('hidden');
+                openIcon.classList.remove('hidden');
+            } else {
+                items.classList.add('opacity-0', 'translate-y-4', 'scale-95', 'pointer-events-none');
+                items.classList.remove('opacity-100', 'translate-y-0', 'scale-100', 'pointer-events-auto');
+                closedIcon.classList.remove('hidden');
+                openIcon.classList.add('hidden');
+            }
+        }
+
+        document.addEventListener('click', (e) => {
+            const dial = document.getElementById('supportSpeedDial');
+            if (speedDialOpen && dial && !dial.contains(e.target)) {
+                toggleSpeedDial();
+            }
+        });
+
+        // Boot Application
+        window.addEventListener('DOMContentLoaded', () => {
+            try {
+                if (localStorage.getItem('font_kaomoji_studio_theme') === 'light') {
+                    document.documentElement.classList.remove('dark');
+                }
+            } catch (e) {}
+
+            syncFavToggleUI();
+            renderCategoryPills();
+            renderCurrentGrid();
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
